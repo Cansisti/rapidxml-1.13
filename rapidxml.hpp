@@ -2171,7 +2171,11 @@ namespace rapidxml
             {
                 // Skip whitespace between > and node contents
                 Ch *contents_start = text;      // Store start of node contents before whitespace is skipped
-                skip<whitespace_pred, Flags>(text);
+
+                // (Tomasz Beneś) this skip causes OpenDocument's nodes containing single space to appear empty
+                // TODO: Add a flag to indicate not removing whitespaces
+
+                // skip<whitespace_pred, Flags>(text);
                 Ch next_char = *text;
 
             // After data nodes, instead of continuing the loop, control jumps here.
